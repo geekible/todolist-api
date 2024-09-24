@@ -1,9 +1,9 @@
 service:
   port: 8080
-  environment: prod
+  environment: dev
 database:
   host: db
-  username: root
-  password: foobar
+  username: postgres
+  password: Netlink412001!
   dbname: tododb
   port: 5432
