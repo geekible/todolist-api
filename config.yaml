@@ -1,0 +1,8 @@
+service:
+  port: 5001
+database:
+  host: localhost
+  username: root
+  password: foobar
+  dbname: todo
+  port: 5432
