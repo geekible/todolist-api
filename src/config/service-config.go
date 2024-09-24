@@ -44,6 +44,7 @@ func (s *ServiceConfig) BuildConfig() (*ServiceConfig, error) {
 	logger := s.buildLogger(logfile)
 
 	db, err := s.buildDatbaseConnection(
+		viper.GetString("service.environment"),
 		viper.GetString("database.host"),
 		viper.GetString("database.username"),
 		viper.GetString("database.password"),
@@ -109,7 +110,12 @@ func (s *ServiceConfig) buildLogger(f *os.File) *zap.SugaredLogger {
 
 }
 
-func (s *ServiceConfig) buildDatbaseConnection(host, username, password, dbName string, port int) (*gorm.DB, error) {
+func (s *ServiceConfig) buildDatbaseConnection(env, host, username, password, dbName string, port int) (*gorm.DB, error) {
+
+	if env == "dev" {
+		host = "localhost"
+	}
+
 	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%d sslmode=disable",
 		host,
 		username,

@@ -27,7 +27,7 @@ func (s *ToDoService) isEntityValid(entity domain.ToDoEntity) error {
 		return errors.New("description cannot be empty")
 	}
 
-	if entity.DueDate.Before(time.Now()) {
+	if entity.DueDate.After(time.Now()) {
 		return errors.New("due date cannot be in the past")
 	}
 

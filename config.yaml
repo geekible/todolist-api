@@ -1,8 +1,9 @@
 service:
-  port: 5001
+  port: 8080
+  environment: prod
 database:
-  host: localhost
+  host: db
   username: root
   password: foobar
-  dbname: todo
+  dbname: tododb
   port: 5432
