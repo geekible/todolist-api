@@ -1,0 +1,34 @@
+curl --location 'http://localhost:8080/todo' \
+--header 'Content-Type: application/json' \
+--data '{
+        "UserId": 2,
+        "Title": "foo",
+        "Description": "bar",
+        "IsComplete": false,
+        "DueDate": "2025-11-25T01:00:00+01:00"
+}'
+
+------------------
+
+curl --location --request PUT 'http://localhost:8080/todo' \
+--header 'Content-Type: application/json' \
+--data '{
+    "ID": 7,
+        "UserId": 2,
+        "Title": "foo",
+        "Description": "bar",
+        "IsComplete": false,
+        "DueDate": "2025-11-25T01:00:00+01:00"
+}'
+
+---------------------
+
+curl --location 'http://localhost:8080/todo/get-model'
+
+---------------------
+
+curl --location 'http://localhost:8080/todo/get-by-user-id?userId=2'
+
+---------------------
+
+curl --location 'http://localhost:8080/todo?userId=1&id=2'

@@ -17,5 +17,8 @@ func InitMigration(serviceConfig *ServiceConfig) *Migration {
 
 func (m *Migration) DoMigration() {
 	m.serviceConfig.Logger.Log(zapcore.InfoLevel, "migrating ToDoEntity")
-	m.serviceConfig.Db.AutoMigrate(&domain.ToDoEntity{})
+	if err := m.serviceConfig.Db.AutoMigrate(&domain.ToDoEntity{}); err != nil {
+		m.serviceConfig.Logger.Errorf("error migrating table ToDoEntity: %v", err)
+	}
+	m.serviceConfig.Logger.Log(zapcore.InfoLevel, "migrating ToDoEntity completed")
 }

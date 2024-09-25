@@ -63,7 +63,7 @@ func (s *ServiceConfig) BuildConfig() (*ServiceConfig, error) {
 }
 
 func (s *ServiceConfig) BuilderMux() *chi.Mux {
-	requestLogger := httplog.NewLogger("authentication-service", httplog.Options{
+	requestLogger := httplog.NewLogger("todo-service", httplog.Options{
 		JSON:     true,
 		Concise:  true,
 		LogLevel: "debug",
@@ -138,8 +138,9 @@ func (s *ServiceConfig) buildDatbaseConnection(env, host, username, password, db
 		DSN:                  dsn,
 		PreferSimpleProtocol: true,
 	}), &gorm.Config{
-		Logger:  dbLogger,
-		NowFunc: time.Now,
+		Logger:      dbLogger,
+		NowFunc:     time.Now,
+		PrepareStmt: true,
 	})
 
 	if err != nil {
